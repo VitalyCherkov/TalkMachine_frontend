@@ -1,0 +1,13 @@
+.message-input__button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--middle-dark-gray);
+    transition: var(--base-transition);
+}
+
+.message-input__button:hover {
+    color: var(--middle-blue);
+}

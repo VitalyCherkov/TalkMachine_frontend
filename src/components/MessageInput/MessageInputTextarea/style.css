@@ -1,0 +1,15 @@
+.message-input__textarea {
+    min-height: 100%;
+    border: none;
+    box-sizing: border-box;
+    flex-grow: 1;
+    margin: none;
+    resize: none;
+    outline: none;
+    padding: 11px;
+    font: var(--paragraph-font);
+}
+
+.message-input__textarea:focus {
+    outline: none;
+}

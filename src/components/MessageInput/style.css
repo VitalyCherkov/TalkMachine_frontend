@@ -1,0 +1,11 @@
+.message-input {
+    box-sizing: border-box;
+    height: 41px;
+    background-color: #ffffff;
+    border-top: 1px solid var(--light-gray);
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}

@@ -1,0 +1,30 @@
+.message-card {
+    background-color: #ffffff;
+    border-radius: var(--primary-border-radius);
+    box-shadow: var(--secondary-box-shadow);
+    padding: 10px;
+    max-width: 70%;
+    min-width: 200px;
+}
+
+.message-card__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.message-card__title {
+    font: var(--paragraph-font-bold);
+    color: var(--dark-blue);
+}
+
+.message-card__meta {
+    font: var(--meta-font);
+    color: var(--middle-dark-gray);
+}
+
+.message-card__content {
+    font: var(--paragraph-font);
+    color: #000000;
+}

@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-    entry: './index.js',
+    entry: './src/index.jsx',
     devtool: 'cheap-module-source-map',
     plugins: [
         new HtmlWebpackPlugin({
@@ -36,17 +36,26 @@ module.exports = {
             {
                 test: /\css$/,
                 use: ['style-loader', 'css-loader'],
-                include: /flexboxgrid/
+                include: /node_modules/,
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
                 use: 'file-loader'
             },
             {
-                test: /\.js|.jsx?$/,
+                test: /\.js|.jsx$/,
                 exclude: /node_modules/,
                 loaders: ['babel-loader']
-            }
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                loaders: ['style-loader', 'css-loader'],
+            },
         ]
+    },
+
+    resolve: {
+        extensions: ['.js', '.jsx'],
     }
 };
