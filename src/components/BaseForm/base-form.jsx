@@ -8,6 +8,8 @@ import ButtonTypes from '../../constants/UsualButton/button-types';
 import FormField from '../FormField/form-field';
 import UsualButton from '../UsualButton/usual-button';
 
+import './style.css';
+
 
 class BaseForm extends React.Component {
 
@@ -40,9 +42,10 @@ class BaseForm extends React.Component {
     renderSecondaryButton() {
         return (
             <UsualButton
-                text={ this.props.secondaryButtonText }
+                text={ this.props.linkText }
                 type={ ButtonTypes.SECONDARY }
                 extraClassNames={ ['form__button'] }
+                to={ this.props.linkPath }
             />
         );
     }

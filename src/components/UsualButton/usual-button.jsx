@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'react-proptypes';
+import { Link } from 'react-router-dom';
 
 import ButtonTypes from '../../constants/UsualButton/button-types';
 
@@ -8,8 +9,8 @@ import './style.css';
 
 export default class UsualButton extends React.Component {
 
-    get href() {
-        return this.props.href;
+    get to() {
+        return this.props.to;
     }
 
     get text() {
@@ -31,19 +32,23 @@ export default class UsualButton extends React.Component {
 
     render() {
         return (
-            <a
-                href={ this.href }
+            <Link
+                to={ this.to }
                 className={ `${ this.extraClassNames } button ${ this.buttonTypeClassName }` }
             >
                 { this.text }
-            </a>
+            </Link>
         );
     }
 }
 
-UsualButton.PropTypes = {
-    href: PropTypes.string,
+UsualButton.propTypes = {
+    to: PropTypes.string,
     type: PropTypes.oneOf(Object.values(ButtonTypes)),
     text: PropTypes.string,
     extraClassNames: PropTypes.arrayOf(PropTypes.string),
+};
+
+UsualButton.defaultProps = {
+    to: '/'
 };

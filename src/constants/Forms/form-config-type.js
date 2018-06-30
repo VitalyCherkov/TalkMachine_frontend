@@ -9,14 +9,14 @@ export default class FormConfig {
         fields = [],
         submitButtonText = 'Submit',
         submitButtonHandler = noop,
-        secondaryButtonText = '',
-        secondaryButtonHandler = noop,
+        linkText = '',
+        linkPath = '/',
     }) {
         this.name = name;
         this.fields = fields;
         this.submitButtonText = submitButtonText;
         this.submitButtonHander = submitButtonHandler;
-        this.secondaryButtonText = secondaryButtonText;
-        this.secondaryButtonHandler = secondaryButtonHandler;
+        this.linkText = linkText;
+        this.linkPath = linkPath;
     }
 };

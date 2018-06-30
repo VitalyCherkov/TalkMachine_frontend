@@ -34,7 +34,7 @@ export default class MainTab extends React.Component {
     }
 }
 
-MainTab.PropTypes = {
+MainTab.propTypes = {
     icon: PropTypes.oneOf(Object.values(IconNames)),
     text: PropTypes.string,
     isActive: PropTypes.bool,

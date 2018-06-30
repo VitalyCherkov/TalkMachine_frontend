@@ -23,6 +23,6 @@ export default class MessageInputButton extends React.Component {
     }
 }
 
-MessageInputButton.PropTypes = {
+MessageInputButton.propTypes = {
     icon: PropTypes.oneOf(Object.values(IconNames))
 };

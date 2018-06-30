@@ -1,7 +1,7 @@
 'use strict';
 
-import FieldConfig from 'field-config-type';
-import FormConfig from 'form-config-type';
+import FieldConfig from './field-config-type';
+import FormConfig from './form-config-type';
 
 
 const SignUpFormConfig = new FormConfig({
@@ -29,7 +29,7 @@ const SignUpFormConfig = new FormConfig({
         })
     ],
     submitButtonText: 'SignUp',
-    secondaryButtonText: 'Login',
+    linkText: 'Login',
 });
 
 export default SignUpFormConfig;

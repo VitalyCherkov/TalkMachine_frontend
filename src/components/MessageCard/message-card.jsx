@@ -37,7 +37,7 @@ export default class MessageCard extends React.Component {
     }
 };
 
-MessageCard.PropTypes = {
+MessageCard.propTypes = {
     extraClassNames: PropTypes.arrayOf(PropTypes.string),
     authorName: PropTypes.string,
     crated: PropTypes.string,

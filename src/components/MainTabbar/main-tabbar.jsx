@@ -25,6 +25,6 @@ export default class MainTabbar extends React.Component{
     }
 }
 
-MainTabbar.PropTypes = {
+MainTabbar.propTypes = {
     tabOptions: PropTypes.arrayOf(TabOption)
 };

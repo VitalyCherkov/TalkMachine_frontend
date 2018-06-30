@@ -51,7 +51,7 @@ export default class DialogCard extends React.Component {
     }
 }
 
-DialogCard.PropTypes = {
+DialogCard.propTypes = {
     title: PropTypes.string,
     notificationsCount: PropTypes.number,
     lastUpdateDateTime: PropTypes.string,

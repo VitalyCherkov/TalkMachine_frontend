@@ -42,7 +42,7 @@ class FormField extends React.Component {
     }
 }
 
-FormField.PropTypes = {
+FormField.propTypes = {
     value: PropTypes.string,
     error: PropTypes.string,
     name: PropTypes.string,

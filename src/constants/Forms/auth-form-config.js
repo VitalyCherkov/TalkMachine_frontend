@@ -19,7 +19,7 @@ const AuthFormConfig = new FormConfig({
         }),
     ],
     submitButtonText: 'Login',
-    secondaryButtonText: 'SignUp'
+    linkText: 'SignUp',
 });
 
 export default AuthFormConfig;

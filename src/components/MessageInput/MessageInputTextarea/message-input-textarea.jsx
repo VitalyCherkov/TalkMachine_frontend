@@ -25,7 +25,7 @@ export default class MessageInputTextarea extends React.Component{
     }
 }
 
-MessageInputTextarea.PropTypes = {
+MessageInputTextarea.propTypes = {
     placeholder: PropTypes.string,
     text: PropTypes.string,
 };
