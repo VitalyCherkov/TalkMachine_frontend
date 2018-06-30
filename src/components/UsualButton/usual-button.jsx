@@ -31,7 +31,12 @@ export default class UsualButton extends React.Component {
 
     render() {
         return (
-            <a href={this.href} className={`${this.extraClassNames} button ${this.buttonTypeClassName}`}>{this.text}</a>
+            <a
+                href={ this.href }
+                className={ `${ this.extraClassNames } button ${ this.buttonTypeClassName }` }
+            >
+                { this.text }
+            </a>
         );
     }
 }

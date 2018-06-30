@@ -26,16 +26,16 @@ export default class MessageCard extends React.Component {
 
     render() {
         return (
-            <div className={`message-card ${this.extraClassNames}`}>
+            <div className={ `message-card ${ this.extraClassNames }` }>
                 <div className="message-card__header">
-                    <div className="message-card__title">{this.authorName}</div>
-                    <div className="message-card__meta">{this.created}</div>
+                    <div className="message-card__title">{ this.authorName }</div>
+                    <div className="message-card__meta">{ this.created }</div>
                 </div>
-                <div className="message-card__content">{this.text}</div>
+                <div className="message-card__content">{ this.text }</div>
             </div>
         );
     }
-}
+};
 
 MessageCard.PropTypes = {
     extraClassNames: PropTypes.arrayOf(PropTypes.string),

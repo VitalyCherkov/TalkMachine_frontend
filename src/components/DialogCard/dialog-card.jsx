@@ -23,7 +23,7 @@ export default class DialogCard extends React.Component {
     get text() {
         let cut_text =  this.props.text.substring(0, 45);
         if (cut_text.length < this.props.text.length) {
-            cut_text = `${cut_text}...`;
+            cut_text = `${ cut_text }...`;
         }
         return cut_text;
     }

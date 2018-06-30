@@ -26,9 +26,9 @@ export default class MainTab extends React.Component {
 
     render() {
         return (
-            <a className={`tabbar-main__tab ${this.isActiveClassName}`}>
-                <i className="material-icons tabbar-main__tab-i">{this.icon}</i>
-                {this.text}
+            <a className={ `tabbar-main__tab ${ this.isActiveClassName } `}>
+                <i className="material-icons tabbar-main__tab-i">{ this.icon }</i>
+                { this.text }
             </a>
         );
     }

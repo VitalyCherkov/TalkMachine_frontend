@@ -9,28 +9,34 @@ import './style.css';
 
 
 class FormField extends React.Component {
-    render() {
 
-        let errorBlock = null;
-        let errorInputClassName = null;
+    get errorBlock() {
         if (this.props.error && this.props.error !== '') {
-            errorBlock = <p className="form-input-group__error form-input-group__error_multiline text-error">
-                {this.props.error}
+            return <p className="form-input-group__error form-input-group__error_multiline text-error">
+                { this.props.error }
             </p>;
-
-            errorInputClassName = "form-input-group__input_error";
         }
+        return null;
+    }
 
+    get errorInputClassName() {
+        if (this.props.error && this.props.error !== '') {
+            return "form-input-group__input_error";
+        }
+        return null;
+    }
+
+    render() {
         return (
             <div className="form-input-group form-input-group_multiline">
                 <input
-                    className={`form-input-group__input form-input-group__input_multiline ${errorInputClassName}`}
-                    type={this.props.type}
-                    name={this.props.name}
-                    placeholder={this.props.placeholder}
-                    value={this.props.value}
+                    className={ `form-input-group__input form-input-group__input_multiline ${ this.errorInputClassName }` }
+                    type={ this.props.type }
+                    name={ this.props.name }
+                    placeholder={ this.props.placeholder }
+                    value={ this.props.value }
                 />
-                {errorBlock}
+                { this.errorBlock }
             </div>
         );
     }
@@ -42,6 +48,11 @@ FormField.PropTypes = {
     name: PropTypes.string,
     type: PropTypes.oneOf(Object.values(FieldTypes)),
     placeholder: PropTypes.string,
+};
+
+FormField.defaultProps = {
+    value: null,
+    error: null,
 };
 
 export default FormField;

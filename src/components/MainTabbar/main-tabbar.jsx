@@ -19,9 +19,7 @@ export default class MainTabbar extends React.Component{
     render() {
         return (
             <div className="tabbar-main">
-                {
-                    this.tabOptions.map(option => <MainTab {...option}/>)
-                }
+                { this.tabOptions.map(option => <MainTab {...option}/>) }
             </div>
         );
     }
