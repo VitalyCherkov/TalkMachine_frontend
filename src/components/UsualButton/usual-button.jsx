@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'react-proptypes';
 import { Link } from 'react-router-dom';
 
+import noop from "../../utils/noop";
+
 import ButtonTypes from '../../constants/UsualButton/button-types';
 
 import './style.css';
@@ -30,11 +32,16 @@ export default class UsualButton extends React.Component {
         return this.props.extraClassNames.join(' ');
     }
 
+    get clickHandler() {
+        return this.props.clickHandler;
+    }
+
     render() {
         return (
             <Link
                 to={ this.to }
                 className={ `${ this.extraClassNames } button ${ this.buttonTypeClassName }` }
+                onClick={ this.clickHandler }
             >
                 { this.text }
             </Link>
@@ -43,6 +50,7 @@ export default class UsualButton extends React.Component {
 }
 
 UsualButton.propTypes = {
+    clickHandler: PropTypes.func,
     to: PropTypes.string,
     type: PropTypes.oneOf(Object.values(ButtonTypes)),
     text: PropTypes.string,
@@ -50,5 +58,6 @@ UsualButton.propTypes = {
 };
 
 UsualButton.defaultProps = {
-    to: '/'
+    to: '/',
+    clickHandler: noop,
 };

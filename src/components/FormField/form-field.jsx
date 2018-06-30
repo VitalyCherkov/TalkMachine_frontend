@@ -30,6 +30,7 @@ class FormField extends React.Component {
         return (
             <div className="form-input-group form-input-group_multiline">
                 <input
+                    { ...this.props.input }
                     className={ `form-input-group__input form-input-group__input_multiline ${ this.errorInputClassName }` }
                     type={ this.props.type }
                     name={ this.props.name }
@@ -43,6 +44,7 @@ class FormField extends React.Component {
 }
 
 FormField.propTypes = {
+    input: PropTypes.object,
     value: PropTypes.string,
     error: PropTypes.string,
     name: PropTypes.string,
