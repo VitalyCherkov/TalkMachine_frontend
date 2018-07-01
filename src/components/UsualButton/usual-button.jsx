@@ -36,7 +36,21 @@ export default class UsualButton extends React.Component {
         return this.props.clickHandler;
     }
 
+    get buttonView() {
+        return <button
+            type="submit"
+            className={ `${ this.extraClassNames } button ${ this.buttonTypeClassName }` }
+        >
+            { this.text }
+        </button>
+    }
+
     render() {
+
+        if ( this.props.isSubmit ) {
+            return this.buttonView;
+        }
+
         return (
             <Link
                 to={ this.to }
@@ -55,9 +69,11 @@ UsualButton.propTypes = {
     type: PropTypes.oneOf(Object.values(ButtonTypes)),
     text: PropTypes.string,
     extraClassNames: PropTypes.arrayOf(PropTypes.string),
+    isSubmit: PropTypes.bool,
 };
 
 UsualButton.defaultProps = {
-    to: '/',
+    to: '#',
     clickHandler: noop,
+    isSubmit: false
 };

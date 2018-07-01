@@ -22,5 +22,6 @@ export const validate = (formConfig) => (values) => {
         }
     }
 
+    console.log('validate', values, errors);
     return errors;
 };

@@ -8,7 +8,7 @@ export default class FieldConfig {
         name = '',
         type = '',
         placeholder = '',
-        validators = []
+        validators = [],
     }) {
         this.value = value;
         this.error = error;

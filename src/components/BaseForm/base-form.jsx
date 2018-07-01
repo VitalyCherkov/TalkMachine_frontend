@@ -1,26 +1,18 @@
 'use strict';
 
 import React from 'react';
-import { reducer as fromReducer, Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 import ButtonTypes from '../../constants/UsualButton/button-types';
 
-import FormField from '../FormField/form-field';
 import UsualButton from '../UsualButton/usual-button';
 
 import { validate } from './validate';
+import { submit } from './on-submit';
+import { renderField } from "./render-field";
+
 import './style.css';
 
-const renderField = ({ input, value, meta: { error, touched }, name, type, placeholder}) =>
-    <FormField
-        input={ input }
-        value={ value }
-        error={ error }
-        touched={ touched }
-        name={ name }
-        type={ type }
-        placeholder={ placeholder }
-    />;
 
 
 class BaseForm extends React.Component {
@@ -35,7 +27,7 @@ class BaseForm extends React.Component {
                 text={ this.props.submitButtonText }
                 type={ ButtonTypes.PRIMARY }
                 extraClassNames={ ['form__button'] }
-                clickHandler={ this.props.handleSubmit() }
+                isSubmit={ true }
             />
         );
     }
@@ -58,8 +50,8 @@ class BaseForm extends React.Component {
     render() {
         return (
             <div className="auth-form form">
-                <form>
-                {/*<form onSubmit={ this.props.handleSubmit } >*/}
+                {/*<form>*/}
+                <form onSubmit={ this.props.handleSubmit } >
                     { this.fieldOptions.map(option =>
                         <Field {...option} component={ renderField } />
                     ) }
@@ -67,24 +59,20 @@ class BaseForm extends React.Component {
                         { this.renderSubmitButton() }
                         { this.renderSecondaryButton() }
                     </div>
-                    { this.props.error && <p>{ this.props.error }</p> }
+                    { this.props.error && <p className="form__error text-error" >{ this.props.error }</p> }
                 </form>
             </div>
         );
     }
 }
 
-const onSubmit = (values) => {
-    console.log('SUBMIT');
-    return validate(values);
-};
 
 const createBaseForm = ({ formConfig }) => {
     console.log(formConfig);
     return reduxForm({
         form: formConfig.name,
         validate: validate(formConfig),
-        onSubmit: onSubmit,
+        onSubmit: submit(formConfig),
     })(BaseForm);
 };
 

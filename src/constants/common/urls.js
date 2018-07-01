@@ -1,10 +1,12 @@
 'use strict';
 
-const Urls = {
-    USER_LOGIN: '',
-    USER_SIGN_UP: '',
+const BASE_URL = 'http://localhost:8010';
+
+const API_URLS = {
+    USER_LOGIN: '/user/login',
+    USER_SIGN_UP: '/user/signup',
     USER_LOGOUT: '',
     USER_EDIT: ''
 };
 
-export default Urls;
+export { BASE_URL, API_URLS };
