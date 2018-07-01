@@ -11,25 +11,22 @@ import UsualButton from '../UsualButton/usual-button';
 import { validate } from './validate';
 import './style.css';
 
+const renderField = ({ input, value, meta: { error, touched }, name, type, placeholder}) =>
+    <FormField
+        input={ input }
+        value={ value }
+        error={ error }
+        touched={ touched }
+        name={ name }
+        type={ type }
+        placeholder={ placeholder }
+    />;
+
 
 class BaseForm extends React.Component {
 
     get fieldOptions() {
         return this.props.fields;
-    }
-
-    get renderField (){
-        return ({ input, value, meta, name, type, placeholder}) => {
-
-            return <FormField
-                input={ input }
-                value={ value }
-                error={ meta.error }
-                name={name}
-                type={type}
-                placeholder={placeholder}
-            />
-        };
     }
 
     renderSubmitButton() {
@@ -38,7 +35,7 @@ class BaseForm extends React.Component {
                 text={ this.props.submitButtonText }
                 type={ ButtonTypes.PRIMARY }
                 extraClassNames={ ['form__button'] }
-                clickHandler={ this.props.handleSubmit.bind(this) }
+                clickHandler={ this.props.handleSubmit() }
             />
         );
     }
@@ -54,15 +51,23 @@ class BaseForm extends React.Component {
         );
     }
 
+    getRenderedField(option) {
+        return <Field {...option} component={ renderField } />
+    }
+
     render() {
         return (
             <div className="auth-form form">
-                <form onSubmit={ this.props.handleSubmit } >
-                    { this.fieldOptions.map(option => <Field { ...option } component={ this.renderField }/>) }
+                <form>
+                {/*<form onSubmit={ this.props.handleSubmit } >*/}
+                    { this.fieldOptions.map(option =>
+                        <Field {...option} component={ renderField } />
+                    ) }
                     <div className="form__buttons">
                         { this.renderSubmitButton() }
                         { this.renderSecondaryButton() }
                     </div>
+                    { this.props.error && <p>{ this.props.error }</p> }
                 </form>
             </div>
         );
@@ -71,13 +76,14 @@ class BaseForm extends React.Component {
 
 const onSubmit = (values) => {
     console.log('SUBMIT');
-    validate(values);
+    return validate(values);
 };
 
-const createBaseForm = ({ formOptions }) => {
+const createBaseForm = ({ formConfig }) => {
+    console.log(formConfig);
     return reduxForm({
-        form: formOptions.name,
-        validate: validate,
+        form: formConfig.name,
+        validate: validate(formConfig),
         onSubmit: onSubmit,
     })(BaseForm);
 };

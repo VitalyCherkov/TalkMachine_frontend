@@ -8,7 +8,6 @@ export default class FieldConfig {
         name = '',
         type = '',
         placeholder = '',
-        required = true,
         validators = []
     }) {
         this.value = value;
@@ -16,6 +15,6 @@ export default class FieldConfig {
         this.name = name;
         this.type = type;
         this.placeholder = placeholder;
-        this.required = required;
+        this.validators = validators;
     }
 };

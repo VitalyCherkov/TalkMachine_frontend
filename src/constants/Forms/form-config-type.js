@@ -11,6 +11,7 @@ export default class FormConfig {
         submitButtonHandler = noop,
         linkText = '',
         linkPath = '/',
+        validators = [],
     }) {
         this.name = name;
         this.fields = fields;
@@ -18,5 +19,6 @@ export default class FormConfig {
         this.submitButtonHander = submitButtonHandler;
         this.linkText = linkText;
         this.linkPath = linkPath;
+        this.validators = validators;
     }
 };

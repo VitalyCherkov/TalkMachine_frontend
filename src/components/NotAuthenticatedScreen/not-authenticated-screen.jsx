@@ -6,33 +6,32 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import LogoPrimary from '../LogoPrimary/logo-primary';
 import createBaseForm from '../BaseForm/base-form';
 
-import AuthFormConfig from '../../constants/Forms/auth-form-config';
-import SignUpFormConfig from '../../constants/Forms/sign-up-form-config';
+import AuthFormConfig from "../../constants/Forms/auth-form-config";
+import SignUpFormConfig from "../../constants/Forms/sign-up-form-config";
 
 import './style.css';
+
 
 
 export default class NotAuthenticatedScreen extends React.Component {
 
     getAuthForm({ match }) {
-        const AuthForm = createBaseForm({ formOptions: AuthFormConfig });
-        AuthFormConfig.linkPath = `${this.props.match.url}signup`;
+        const AuthForm = createBaseForm({ formConfig: AuthFormConfig });
+        AuthFormConfig.linkPath = `${ this.props.match.url }signup`;
         return (
             <AuthForm { ...AuthFormConfig } />
         );
     }
 
     getSignUpForm({ match }) {
-        const SignUpForm = createBaseForm({ formOptions: SignUpFormConfig });
-        SignUpFormConfig .linkPath = `${this.props.match.url}login`;
+        const SignUpForm = createBaseForm({ formConfig: SignUpFormConfig });
+        SignUpFormConfig .linkPath = `${ this.props.match.url }login`;
         return (
             <SignUpForm {...SignUpFormConfig} />
         );
     }
 
     render() {
-        console.log(this.props);
-
         return (
             <div className="not-authenticated">
                 <div/>

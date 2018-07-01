@@ -20,7 +20,7 @@ class FormField extends React.Component {
     }
 
     get errorInputClassName() {
-        if (this.props.error && this.props.error !== '') {
+        if (this.props.touched && this.props.error && this.props.error !== '') {
             return "form-input-group__input_error";
         }
         return null;
@@ -37,7 +37,7 @@ class FormField extends React.Component {
                     placeholder={ this.props.placeholder }
                     value={ this.props.value }
                 />
-                { this.errorBlock }
+                { this.props.touched && this.props.error && this.errorBlock }
             </div>
         );
     }
@@ -50,11 +50,13 @@ FormField.propTypes = {
     name: PropTypes.string,
     type: PropTypes.oneOf(Object.values(FieldTypes)),
     placeholder: PropTypes.string,
+    touched: PropTypes.bool,
 };
 
 FormField.defaultProps = {
     value: null,
     error: null,
+    touched: false,
 };
 
 export default FormField;
