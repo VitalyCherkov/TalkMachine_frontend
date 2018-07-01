@@ -14,7 +14,6 @@ import { renderField } from "./render-field";
 import './style.css';
 
 
-
 class BaseForm extends React.Component {
 
     get fieldOptions() {
@@ -49,8 +48,7 @@ class BaseForm extends React.Component {
 
     render() {
         return (
-            <div className="auth-form form">
-                {/*<form>*/}
+            <div className="form">
                 <form onSubmit={ this.props.handleSubmit } >
                     { this.fieldOptions.map(option =>
                         <Field {...option} component={ renderField } />
@@ -66,9 +64,7 @@ class BaseForm extends React.Component {
     }
 }
 
-
 const createBaseForm = ({ formConfig }) => {
-    console.log(formConfig);
     return reduxForm({
         form: formConfig.name,
         validate: validate(formConfig),

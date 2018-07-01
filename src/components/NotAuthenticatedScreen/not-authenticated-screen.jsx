@@ -2,32 +2,30 @@
 
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import LogoPrimary from '../LogoPrimary/logo-primary';
 import createBaseForm from '../BaseForm/base-form';
 
-import AuthFormConfig from "../../constants/Forms/auth-form-config";
-import SignUpFormConfig from "../../constants/Forms/sign-up-form-config";
-
 import './style.css';
 
-
-
-export default class NotAuthenticatedScreen extends React.Component {
+class NotAuthenticatedScreen extends React.Component {
 
     getAuthForm({ match }) {
-        const AuthForm = createBaseForm({ formConfig: AuthFormConfig });
-        AuthFormConfig.linkPath = `${ this.props.match.url }signup`;
+        const { authFormConfig } = this.props;
+        const AuthForm = createBaseForm({ formConfig: authFormConfig });
+        authFormConfig.linkPath = `${ this.props.match.url }signup`;
         return (
-            <AuthForm { ...AuthFormConfig } />
+            <AuthForm { ...authFormConfig } />
         );
     }
 
     getSignUpForm({ match }) {
-        const SignUpForm = createBaseForm({ formConfig: SignUpFormConfig });
-        SignUpFormConfig .linkPath = `${ this.props.match.url }login`;
+        const { signUpFormConfig } = this.props;
+        const SignUpForm = createBaseForm({ formConfig: signUpFormConfig });
+        signUpFormConfig.linkPath = `${ this.props.match.url }login`;
         return (
-            <SignUpForm {...SignUpFormConfig} />
+            <SignUpForm {...signUpFormConfig} />
         );
     }
 
@@ -48,3 +46,15 @@ export default class NotAuthenticatedScreen extends React.Component {
         );
     }
 }
+
+const putStateToProps = (state) => {
+
+    console.log(state);
+
+    return {
+        authFormConfig: state.forms.initial['auth-form'],
+        signUpFormConfig: state.forms.initial['sign-up-form'],
+    }
+};
+
+export const WrappedNotAuthenticatedScreen = connect(putStateToProps)(NotAuthenticatedScreen);

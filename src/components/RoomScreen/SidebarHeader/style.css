@@ -1,0 +1,7 @@
+.room__sidebar-header {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+
+    background-color: #ffffff;
+    border-right: 1px solid var(--middle-light-gray);
+}

@@ -1,16 +1,15 @@
 'use strict';
 
-import { Map } from 'immutable';
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import { formReducer as ownFormReducer } from "./Forms/form-reducer";
+import {userReducer} from "./User/user-reducer";
 
-const initialState = Map({ isAuthenticated: false });
 
 const reducers = {
-    default: (state = initialState, action) => {
-        return state;
-    },
-    form: formReducer
+    form: formReducer,
+    forms: ownFormReducer,
+    user: userReducer,
 };
 
 const reducer = combineReducers(reducers);

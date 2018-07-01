@@ -1,0 +1,8 @@
+.room__content {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    border-bottom: 1px solid var(--middle-light-gray);
+
+    display: flex;
+    flex-direction: column;
+}

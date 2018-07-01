@@ -1,7 +1,6 @@
 'use strict';
 
 import noop from '../../utils/noop';
-import BaseActionCreator from "../../actions/base-action-creator";
 
 
 export default class FormConfig {
@@ -14,7 +13,7 @@ export default class FormConfig {
         linkPath = '/',
         validators = [],
         url = '',
-        submitActionCreator = () => new BaseActionCreator({}),
+        submitActionCreator = (payload) => ({type: '', payload}),
     }) {
         this.name = name;
         this.fields = fields;

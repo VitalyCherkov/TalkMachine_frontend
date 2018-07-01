@@ -1,10 +1,9 @@
 'use strict';
 
-import BaseActionCreator from '../base-action-creator';
-import ActionNames from './action-names';
+import ActionNames from './action_names';
 
 
-const userLoginAction = ({ email, password }) => ({
+export const userLoginAction = ({ email, password }) => ({
     type: ActionNames.USER_LOGIN,
     payload: { email, password },
     tokenRequired: false,
@@ -29,22 +28,22 @@ const userEditAction = ({
     tokenRequired: true,
 });
 
-const userAuthenticatedAction = ({
+export const userAuthenticatedAction = ({
+        isAuthenticated = false,
         email = null,
         username = null,
-        password = null,
         first_name = null,
         last_name = null,
         bio = null,
 }) => ({
     type: ActionNames.USER_AUTHENTICATED,
-    payload: { email, username, password, first_name, last_name, bio },
+    payload: { isAuthenticated, email, username, first_name, last_name, bio },
     tokenRequired: true,
 });
 
-const userLoggedOutAction = (payload) => ({
+export const userLoggedOutAction = () => ({
     type: ActionNames.USER_LOGGED_OUT,
-    payload: payload
+    payload: userAuthenticateAction({}).payload
 });
 
 const userLoginSucceededAction = (payload) => ({
@@ -57,5 +56,6 @@ const userLoginFailedAction = ({payload}) => ({
     payload: payload
 });
 
-
-export { userLoginAction };
+export const userAuthenticateAction = () => ({
+    type: ActionNames.USER_AUTHENTICATE
+});
