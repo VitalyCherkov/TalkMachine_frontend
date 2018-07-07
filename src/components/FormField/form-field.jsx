@@ -11,33 +11,35 @@ import './style.css';
 class FormField extends React.Component {
 
     get errorBlock() {
-        if (this.props.error && this.props.error !== '') {
-            return <p className="form-input-group__error form-input-group__error_multiline text-error">
-                { this.props.error }
-            </p>;
-        }
-        return null;
+        const { touched, error } = this.props;
+        return touched && error ? (
+            <p className='form-input-group__error form-input-group__error_multiline text-error'>
+                { error }
+            </p>
+        ) : null;
     }
 
     get errorInputClassName() {
-        if (this.props.touched && this.props.error && this.props.error !== '') {
-            return "form-input-group__input_error";
-        }
-        return null;
+        const { touched, error } = this.props;
+        return touched && error ?
+            'form-input-group__input_error' : null;
     }
 
     render() {
+
+        const { input, type, name, placeholder, value } = this.props;
+
         return (
-            <div className="form-input-group form-input-group_multiline">
+            <div className='form-input-group form-input-group_multiline'>
                 <input
-                    { ...this.props.input }
+                    { ...input }
                     className={ `form-input-group__input form-input-group__input_multiline ${ this.errorInputClassName }` }
-                    type={ this.props.type }
-                    name={ this.props.name }
-                    placeholder={ this.props.placeholder }
-                    value={ this.props.value }
+                    type={ type }
+                    name={ name }
+                    placeholder={ placeholder }
+                    value={ value }
                 />
-                { this.props.touched && this.props.error && this.errorBlock }
+                { this.errorBlock }
             </div>
         );
     }
@@ -54,7 +56,7 @@ FormField.propTypes = {
 };
 
 FormField.defaultProps = {
-    value: null,
+    // value: undefined,
     error: null,
     touched: false,
 };

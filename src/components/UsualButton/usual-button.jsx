@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'react-proptypes';
 import { Link } from 'react-router-dom';
 
-import noop from "../../utils/noop";
+import noop from '../../utils/noop';
 
 import ButtonTypes from '../../constants/UsualButton/button-types';
+import ButtonModes from '../../constants/UsualButton/button-modes';
 
 import './style.css';
 
@@ -20,12 +21,16 @@ export default class UsualButton extends React.Component {
     }
 
     get buttonTypeClassName(){
-        if (this.props.type === ButtonTypes.PRIMARY) {
-            return 'button_primary';
+        switch (this.props.type) {
+            case ButtonTypes.PRIMARY:
+                return 'button_primary';
+            case ButtonTypes.SECONDARY:
+                return 'button_secondary';
+            case ButtonTypes.LOAD_MORE:
+                return 'button_load-more';
         }
-        else {
-            return'button_secondary';
-        }
+
+        return 'button_secondary';
     }
 
     get extraClassNames() {
@@ -36,30 +41,44 @@ export default class UsualButton extends React.Component {
         return this.props.clickHandler;
     }
 
-    get buttonView() {
+    get classNames() {
+        return `${ this.extraClassNames } button ${ this.buttonTypeClassName }`;
+    }
+
+    get submitView() {
         return <button
             type="submit"
-            className={ `${ this.extraClassNames } button ${ this.buttonTypeClassName }` }
+            className={ this.classNames }
+        >
+            { this.text }
+        </button>;
+    }
+
+    get buttonView() {
+        return <button
+            onClick={ this.clickHandler }
+            className={ this.classNames }
         >
             { this.text }
         </button>
     }
 
+    get linkView() {
+        return <Link
+            to={ this.to }
+            className={ this.classNames }
+            onClick={ this.clickHandler }
+        >
+            { this.text }
+        </Link>;
+    }
+
     render() {
-
-        if ( this.props.isSubmit ) {
-            return this.buttonView;
+        switch (this.props.mode) {
+            case ButtonModes.BUTTON: return this.buttonView;
+            case ButtonModes.LINK: return this.linkView;
+            case ButtonModes.SUBMIT: return this.submitView;
         }
-
-        return (
-            <Link
-                to={ this.to }
-                className={ `${ this.extraClassNames } button ${ this.buttonTypeClassName }` }
-                onClick={ this.clickHandler }
-            >
-                { this.text }
-            </Link>
-        );
     }
 }
 
@@ -69,11 +88,11 @@ UsualButton.propTypes = {
     type: PropTypes.oneOf(Object.values(ButtonTypes)),
     text: PropTypes.string,
     extraClassNames: PropTypes.arrayOf(PropTypes.string),
-    isSubmit: PropTypes.bool,
+    mode: PropTypes.oneOf(Object.values(ButtonModes)),
 };
 
 UsualButton.defaultProps = {
     to: '#',
     clickHandler: noop,
-    isSubmit: false
+    mode: ButtonModes.LINK
 };

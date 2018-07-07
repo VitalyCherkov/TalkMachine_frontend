@@ -1,6 +1,6 @@
 'use strict';
 
-import IconNames from './incon-names';
+import IconNames from './icon-names';
 import TabOption from './tab-option-type';
 
 
@@ -15,7 +15,7 @@ const TabbarOptions = [
     }),
     new TabOption({
         icon: IconNames.CONTACTS,
-        text: 'Contacts'
+        text: 'ContactsActions'
     }),
     new TabOption({
         icon: IconNames.SEARCH,

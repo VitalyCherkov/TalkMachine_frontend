@@ -4,7 +4,7 @@ import FieldConfig from './field-config-type';
 import FormConfig from './form-config-type';
 import { PASSWORD_MIN_LENGTH, FIELD_NAMES } from './constants';
 import { required, minLength, passwordsMatching } from '../../utils/validators/validators';
-import {API_URLS} from "../common/urls";
+import { API_URLS } from '../common/urls';
 
 
 const SignUpFormConfig = new FormConfig({

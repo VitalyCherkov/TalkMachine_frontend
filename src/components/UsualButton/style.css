@@ -14,6 +14,16 @@
     box-shadow: var(--secondary-box-shadow);
 }
 
+.button:focus, .button:focus {
+    outline: none;
+}
+
+.button button {
+    padding: 0;
+    width: auto;
+    box-sizing: unset;
+}
+
 .button_primary {
     background-color: var(--middle-blue);
     border: 1px solid var(--middle-blue-active);
@@ -31,5 +41,15 @@
 }
 
 .button_secondary:hover {
+    background-color: var(--middle-light-gray);
+}
+
+.button_load-more {
+    color: #000000;
+    background-color: var(--light-gray);
+    border: 1px solid var(--middle-dark-gray);
+}
+
+.button_load-more:hover {
     background-color: var(--middle-light-gray);
 }

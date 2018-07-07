@@ -1,9 +1,9 @@
 'use strict';
 
-import ActionNames from "../actions/UserActions/action_names";
-import {API_URLS, BASE_URL} from "../constants/common/urls";
-import {doGet, doPost} from "../utils/http";
-import {userAuthenticatedAction} from "../actions/UserActions/action-creators";
+import ActionNames from '../actions/UserActions/action_names';
+import { API_URLS, BASE_URL } from '../constants/common/urls';
+import { doGet, doPost } from '../utils/http';
+import { userAuthenticatedAction, userLoggedOutAction } from '../actions/UserActions/action-creators';
 
 const UserLoginMiddleware = store => next => action => {
 
@@ -34,7 +34,7 @@ const UserLoginMiddleware = store => next => action => {
         }).catch((error) => {
             console.log('error', error);
             window.localStorage.removeItem('Token');
-            return next(userAuthenticatedAction({ isAuthenticated: false }));
+            return next(userLoggedOutAction({ isAuthenticated: false }));
         });
     }
 
@@ -43,7 +43,7 @@ const UserLoginMiddleware = store => next => action => {
             url: `${ BASE_URL }${ API_URLS.USER_LOGOUT }`
         });
         window.localStorage.removeItem('Token');
-        return next(userAuthenticatedAction({ isAuthenticated: false }));
+        return next(userLoggedOutAction({ isAuthenticated: false }));
     }
 
     return next(action);

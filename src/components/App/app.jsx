@@ -15,13 +15,11 @@ import { PrivateRoute } from "../PrivateRoute/private-route";
 
 class App extends React.Component{
     render() {
-
         const { isAuthenticated } = this.props;
-        console.log('isA', isAuthenticated);
-
         return (
             <BrowserRouter>
                 <Switch>
+
                     <PrivateRoute
                         path='/room'
                         component={ RoomScreen }

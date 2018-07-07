@@ -10,3 +10,9 @@
 .room__element {
     box-sizing: border-box;
 }
+
+.room__in-section-button {
+    box-sizing: padding-box;
+    margin: 10px;
+    padding: 0;
+}

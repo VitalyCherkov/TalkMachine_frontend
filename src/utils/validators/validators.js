@@ -1,6 +1,6 @@
 'use strict';
 
-import {FIELD_NAMES} from "../../constants/Forms/constants";
+import { FIELD_NAMES } from '../../constants/Forms/constants';
 
 
 const required = value => {

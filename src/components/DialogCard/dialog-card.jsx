@@ -1,5 +1,6 @@
 'use strict';
 
+import moment from 'moment';
 import React from 'react';
 import PropTypes from 'react-proptypes';
 
@@ -13,11 +14,12 @@ export default class DialogCard extends React.Component {
     }
 
     get notificationsCount() {
-        return this.props.notificationsCount;
+        return this.props.notificationsCount ? this.props.notificationsCount : 0;
     }
 
     get lastUpdateDateTime() {
-        return this.props.lastUpdateDateTime;
+        const lastUDT = this.props.lastUpdateDateTime;
+        return lastUDT !== '' ? moment(lastUDT).format('HH:mm DD/MM/YYYY') : null;
     }
 
     get text() {
@@ -28,6 +30,13 @@ export default class DialogCard extends React.Component {
         return cut_text;
     }
 
+    renderText() {
+        return this.text && (<div className="dialog-card__text">
+            { this.text }
+        </div>);
+    }
+
+
     render() {
         return(
             <div className="dialog-card">
@@ -37,13 +46,11 @@ export default class DialogCard extends React.Component {
                     <div className="dialog-card__header">
                         <div className="dialog-card__title">{ this.title }</div>
                         <div className="dialog-card__meta">
-                            <span className="dialog-card__notification">{ this.notificationsCount }</span>
+                            { this.notificationsCount > 0 && <span className="dialog-card__notification">{ this.notificationsCount }</span> }
                             <span className="dialog-card__date-time">{ this.lastUpdateDateTime }</span>
                         </div>
                     </div>
-                    <div className="dialog-card__text">
-                        { this.text }
-                    </div>
+                    { this.renderText() }
                 </div>
             </div>
 
@@ -56,4 +63,10 @@ DialogCard.propTypes = {
     notificationsCount: PropTypes.number,
     lastUpdateDateTime: PropTypes.string,
     text: PropTypes.string
+};
+
+DialogCard.defaultProps = {
+    notificationsCount: 0,
+    text: '',
+    lastUpdateDateTime: '',
 };

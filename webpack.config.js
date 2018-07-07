@@ -6,10 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.jsx',
+
     devtool: 'cheap-module-source-map',
+
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Hot Module Replacement'
+            title: 'TalkMachine'
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
@@ -28,14 +30,15 @@ module.exports = {
         noInfo: false,
         stats: 'minimal',
         publicPath: publicPath,
-        contentBase: path.join(__dirname, publicPath)
+        contentBase: path.join(__dirname, publicPath),
+        hot: true,
     },
 
     module: {
         rules: [
             {
                 test: /\css$/,
-                use: ['style-loader', 'css-loader'],
+                loaders: ['style-loader', 'css-loader'],
                 include: /node_modules/,
             },
             {
@@ -57,5 +60,7 @@ module.exports = {
 
     resolve: {
         extensions: ['.js', '.jsx'],
-    }
+    },
+
+    mode: 'development'
 };

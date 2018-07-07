@@ -47,14 +47,9 @@ class NotAuthenticatedScreen extends React.Component {
     }
 }
 
-const putStateToProps = (state) => {
-
-    console.log(state);
-
-    return {
-        authFormConfig: state.forms.initial['auth-form'],
-        signUpFormConfig: state.forms.initial['sign-up-form'],
-    }
-};
+const putStateToProps = (state) => ({
+    authFormConfig: state.forms.initial['auth-form'],
+    signUpFormConfig: state.forms.initial['sign-up-form'],
+});
 
 export const WrappedNotAuthenticatedScreen = connect(putStateToProps)(NotAuthenticatedScreen);

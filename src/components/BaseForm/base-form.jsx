@@ -12,6 +12,7 @@ import { submit } from './on-submit';
 import { renderField } from "./render-field";
 
 import './style.css';
+import ButtonModes from "../../constants/UsualButton/button-modes";
 
 
 class BaseForm extends React.Component {
@@ -26,7 +27,7 @@ class BaseForm extends React.Component {
                 text={ this.props.submitButtonText }
                 type={ ButtonTypes.PRIMARY }
                 extraClassNames={ ['form__button'] }
-                isSubmit={ true }
+                mode={ ButtonModes.SUBMIT }
             />
         );
     }
@@ -42,17 +43,15 @@ class BaseForm extends React.Component {
         );
     }
 
-    getRenderedField(option) {
-        return <Field {...option} component={ renderField } />
-    }
-
     render() {
         return (
             <div className="form">
                 <form onSubmit={ this.props.handleSubmit } >
-                    { this.fieldOptions.map(option =>
-                        <Field {...option} component={ renderField } />
-                    ) }
+                    {
+                        this.fieldOptions.map((option, key) =>
+                            <Field {...option} key={key} component={renderField}/>
+                        )
+                    }
                     <div className="form__buttons">
                         { this.renderSubmitButton() }
                         { this.renderSecondaryButton() }

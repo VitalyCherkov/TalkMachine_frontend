@@ -2,11 +2,12 @@
 
 import React from 'react';
 
+import { Content } from './Content/content';
+import { SideberHeader } from './SidebarHeader/sidebar-header';
+import { Sideber } from './Sidebar/sidebar';
+import { ContentHeader } from './ContentHeader/content-header';
+
 import './style.css';
-import { Content } from "./Content/content";
-import { SideberHeader } from "./SidebarHeader/sidebar-header";
-import { Sideber } from "./Sidebar/sidebar";
-import { ContentHeader } from "./ContentHeader/content-header";
 
 
 export default class RoomScreen extends React.Component {

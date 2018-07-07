@@ -1,30 +1,24 @@
 'use strict';
 
 import React from 'react';
-import PropTypes from 'react-proptypes';
-
-import TabOption from '../../constants/MainTabbar/tab-option-type';
+import { connect } from 'react-redux';
 
 import MainTab from './MainTab/main-tab';
 
 import './style.css';
+import IconNames from "../../constants/MainTabbar/icon-names";
 
 
-export default class MainTabbar extends React.Component{
-
-    get tabOptions() {
-        return this.props.tabOptions;
-    }
+export class MainTabbar extends React.Component{
 
     render() {
         return (
             <div className="tabbar-main">
-                { this.tabOptions.map(option => <MainTab {...option}/>) }
+                <MainTab icon={ IconNames.FORUM } to={ `/room/dialogs` }  text='Dialogs' />
+                <MainTab icon={ IconNames.FORUM } to={ `/room/contacts` } text='Contacts' />
             </div>
         );
     }
 }
 
-MainTabbar.propTypes = {
-    tabOptions: PropTypes.arrayOf(TabOption)
-};
+export const WrappedMainTabbar = connect()(MainTabbar);

@@ -30,7 +30,7 @@ const doRequest = ({ method, url, data = {} }) => {
         const contentType = response.headers.get("content-type");
         if(contentType && contentType.includes("application/json")) {
             if(response.status >= 400) {
-                return response.json.then(Promise.reject.bind(Promise));
+                return Promise.reject(response.json());
             }
             return response.json();
         }
