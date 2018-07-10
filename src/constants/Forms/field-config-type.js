@@ -10,6 +10,7 @@ export default class FieldConfig {
         placeholder = '',
         validators = [],
     }) {
+        return { ...this, ...arguments[0] };
         this.value = value;
         this.error = error;
         this.name = name;

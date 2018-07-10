@@ -15,7 +15,7 @@ export class MainTabbar extends React.Component{
         return (
             <div className="tabbar-main">
                 <MainTab icon={ IconNames.FORUM } to={ `/room/dialogs` }  text='Dialogs' />
-                <MainTab icon={ IconNames.FORUM } to={ `/room/contacts` } text='Contacts' />
+                <MainTab icon={ IconNames.CONTACTS } to={ `/room/contacts` } text='Contacts' />
             </div>
         );
     }

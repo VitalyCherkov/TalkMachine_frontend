@@ -12,7 +12,7 @@ export default class LogoPrimary extends React.Component {
             <div className="primary-logo">
                 <img src={logoSvg} className="primary-logo__img" />
                 <div className="primary-logo__text">
-                    TalkMachine
+                    TalkMachine aaa
                 </div>
             </div>
         );

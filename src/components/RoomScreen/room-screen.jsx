@@ -12,6 +12,7 @@ import './style.css';
 
 export default class RoomScreen extends React.Component {
     render() {
+        console.log('Room screen props', this.props);
         return(
             <section className='room'>
                 <SideberHeader/>

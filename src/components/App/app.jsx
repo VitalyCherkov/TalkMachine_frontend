@@ -10,16 +10,18 @@ import './fonts/iconfont/material-icons.css';
 
 import { WrappedNotAuthenticatedScreen }  from '../NotAuthenticatedScreen/not-authenticated-screen';
 import RoomScreen from '../RoomScreen/room-screen';
-import { PrivateRoute } from "../PrivateRoute/private-route";
+import { PrivateRoute } from '../PrivateRoute/private-route';
 
 
 class App extends React.Component{
     render() {
         const { isAuthenticated } = this.props;
+
+        // console.log('APP: props', this.props);
+
         return (
             <BrowserRouter>
                 <Switch>
-
                     <PrivateRoute
                         path='/room'
                         component={ RoomScreen }

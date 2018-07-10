@@ -3,10 +3,10 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import './style.css';
-import {WrappedConversationsSection} from "../../ConversationsSection/conversations-section";
-import {WrappedContactsSection} from "../../ContactsSection/contacts-section";
+import { WrappedConversationsSection } from '../../ConversationsSection/conversations-section';
+import { WrappedContactsSection } from '../../ContactsSection/contacts-section';
 
+import './style.css';
 
 
 export class Sideber extends React.Component{
@@ -14,7 +14,7 @@ export class Sideber extends React.Component{
         return (
             <div className='room__sidebar'>
                 <Route exact path='/room' render={() => <Redirect to='/room/dialogs' />} />
-                <Route component={ WrappedConversationsSection} path='/room/dialogs' />
+                <Route component={ WrappedConversationsSection } path='/room/dialogs' />
                 <Route component={ WrappedContactsSection } path='/room/contacts' />
             </div>
         );

@@ -4,37 +4,50 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import DialogCard from '../DialogCard/dialog-card';
-import './style.css';
-import UsualButton from '../UsualButton/usual-button';
-import ButtonModes from '../../constants/UsualButton/button-modes';
 import ButtonTypes from '../../constants/UsualButton/button-types';
-import {ContactsLoadNextPageAction} from '../../actions/ContactsActions/action-creators';
+import ButtonModes from '../../constants/UsualButton/button-modes';
+import DialogCard from '../DialogCard/dialog-card';
+import UsualButton from '../UsualButton/usual-button';
+import { ContactsLoadNextPageAction } from '../../actions/ContactsActions/action-creators';
+
+import './style.css';
+import { dialogCardDelegate } from '../ListModelDelegates/dialog-card-delegate';
+import { ListView } from '../ListView/list-view';
+import { contactCardDelegate } from '../ListModelDelegates/contact-card-delegate';
 
 
 class ContactsSection extends React.Component {
+
+    get loadMoreBtn() {
+        const { has_next, loadNextPage, pages } = this.props;
+        if (has_next) {
+            return (<UsualButton
+                text='Load more'
+                mode={ ButtonModes.BUTTON }
+                type={ ButtonTypes.LOAD_MORE }
+                extraClassNames={ ['room__in-section-button'] }
+                clickHandler={ () => loadNextPage({ page: pages }) }
+            />);
+        }
+        else {
+            return null;
+        }
+    }
+
     render() {
-        const { has_next, results, loadNextPage, pages } = this.props;
+        const { results } = this.props;
         return (
             <section className='contacts-section'>
-                { results.map(result => <DialogCard
-                    title={ `${ result.username }` }
-                />) }
-                { has_next ? <UsualButton
-                    text='Load more'
-                    mode={ ButtonModes.BUTTON }
-                    type={ ButtonTypes.LOAD_MORE }
-                    extraClassNames={ ['room__in-section-button'] }
-                    clickHandler={ () => loadNextPage({ page: pages }) }
-                /> : null }
+                <ListView listModel={ results } delegate={ contactCardDelegate } />
+                { this.loadMoreBtn }
             </section>
         );
     }
 }
 
-const putActionsToProps = (diapatch) => bindActionCreators({
+const putActionsToProps = (dispatch) => bindActionCreators({
     loadNextPage: ContactsLoadNextPageAction
-}, diapatch);
+}, dispatch);
 
 const putStatesToProps = (state) => ({
     ...state.contacts

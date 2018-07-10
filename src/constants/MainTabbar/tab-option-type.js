@@ -1,14 +1,20 @@
 'use strict';
 
 
+const tabOptionDefaultProperties = {
+    icon: '',
+    name: '',
+    isActive: false,
+    path: '/'
+};
+
 export default class TabOption {
     constructor({
         icon = '',
-        text = '',
-        isActive = false
-    } = { }) {
-        this.icon = icon;
-        this.text = text;
-        this.isActive = isActive;
+        name = '',
+        isActive = false,
+        path = '/'
+    } = {}) {
+        return { ...tabOptionDefaultProperties, ...arguments[0] };
     }
 };
