@@ -1,46 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
-const publicPath = '/dist/build';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const publicPath = '/dist/build';
 
 
 module.exports = {
     entry: './src/index.jsx',
-
-    devtool: 'cheap-module-source-map',
-
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'TalkMachine'
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ],
-
     output: {
         path: path.join(__dirname, publicPath),
         filename: '[name].bundle.js',
-        publicPath: publicPath,
-        sourceMapFilename: '[name].map',
+        publicPath: publicPath
     },
-
-    devServer: {
-        port: 3000,
-        host: 'localhost',
-        historyApiFallback: true,
-        noInfo: false,
-        stats: 'minimal',
-        publicPath: publicPath,
-        contentBase: path.join(__dirname, publicPath),
-        hot: true,
-    },
-
     module: {
         rules: [
-            {
-                test: /\css$/,
-                loaders: ['style-loader', 'css-loader'],
-                include: /node_modules/,
-            },
             {
                 test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
                 use: 'file-loader'
@@ -57,10 +31,30 @@ module.exports = {
             },
         ]
     },
-
     resolve: {
         extensions: ['.js', '.jsx'],
     },
+    devServer: {
+        contentBase: path.join(__dirname, publicPath),
+        port: 3000,
+        compress: true,
+        historyApiFallback: true,
+        hot: true,
+        hotOnly: true,
+        open: true,
+        publicPath: publicPath,
+    },
+    plugins: [
+        new CleanWebpackPlugin([publicPath]),
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
 
+            inject: false,
+            template: require('html-webpack-template'),
+
+            title: 'TalkMachine',
+            appMountId: 'root',
+        }),
+    ],
     mode: 'development'
 };
